@@ -4,43 +4,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*
- * Regular expressions
+ * Quantifiers: Used to specify number of occurrence of a match
  * 
+ * a  - Exactly one a
+ * a+ - At least one a
+ * a* - At least one or multiple occurrence of a
+ * a? - Exactly one or multiple occurrence of a 
  */
 public class RegularExpressionDemo {
 
-	private static final String TARGET_STRING = "a7b k@Z9";
+	private static final String TARGET_STRING = "abaabbaaabbb";
 
-	private static final String SPACE = "\\s";
-	private static final String EXCEPT_SPACE = "\\S";
-	private static final String DIGIT = "\\d";
-	private static final String EXCEPT_DIGIT = "\\D";
-	private static final String ALPHA_NUMERIC = "\\w";
-	private static final String EXCEPT_ALPHA_NUMERIC = "\\W";
-	private static final String ANY_CHARACTER = ".";
+	private static final String EXACT_MATCHER = "a";
+	private static final String MATCHER_PLUS = "a+";
+	private static final String MATCHER_ASTRISK = "a*";
+	private static final String MATCHER_QUESTION_MARK = "a?";
 
 	public static void main(String[] args) {
 
-		printTestCase("Space in given string " + TARGET_STRING);
-		checkPatternInTargetString(SPACE, TARGET_STRING);
+		printTestCase("Exactly one match in given string " + TARGET_STRING);
+		checkPatternInTargetString(EXACT_MATCHER, TARGET_STRING);
 
-		printTestCase("Characters other than space in given string " + TARGET_STRING);
-		checkPatternInTargetString(EXCEPT_SPACE, TARGET_STRING);
+		printTestCase("At least one match in given string " + TARGET_STRING);
+		checkPatternInTargetString(MATCHER_PLUS, TARGET_STRING);
 
-		printTestCase("Digits in given string " + TARGET_STRING);
-		checkPatternInTargetString(DIGIT, TARGET_STRING);
+		printTestCase("At least one or multiple occurrence in given string " + TARGET_STRING);
+		checkPatternInTargetString(MATCHER_ASTRISK, TARGET_STRING);
 
-		printTestCase("Characters other than digits in given string " + TARGET_STRING);
-		checkPatternInTargetString(EXCEPT_DIGIT, TARGET_STRING);
+		printTestCase("Exactly one or multiple occurrence in given string " + TARGET_STRING);
+		checkPatternInTargetString(MATCHER_QUESTION_MARK, TARGET_STRING);
 
-		printTestCase("Alpha numeric character in given string " + TARGET_STRING);
-		checkPatternInTargetString(ALPHA_NUMERIC, TARGET_STRING);
-
-		printTestCase("Characters other than alpha numeric in given string " + TARGET_STRING);
-		checkPatternInTargetString(EXCEPT_ALPHA_NUMERIC, TARGET_STRING);
-
-		printTestCase("Any character given string " + TARGET_STRING);
-		checkPatternInTargetString(ANY_CHARACTER, TARGET_STRING);
 	}
 
 	private static void printTestCase(String message) {
