@@ -4,54 +4,43 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*
- * Common regular patterns and their meaning
- * [abc] : Either a or b or c
- * [^abc] : Except a or b or c
- * [a-z] : Any lower case alphabets
- * [A-Z] : Any upper case alphabets
- * [0-9] : Any number
- * [a-zA-Z] : Any alphabet
- * [a-zA-Z0-9] : Any alpha numeric characters
- * [^a-zA-Z0-9] : Only special characters
+ * Regular expressions
+ * 
  */
 public class RegularExpressionDemo {
 
-	private static final String TARGET_STRING = "a7b@Z#9";
+	private static final String TARGET_STRING = "a7b k@Z9";
 
-	private static final String SPECIFIC_ALPHABETS = "[abc]";
-	private static final String EXCEPT_SPECIFIC_ALPHABETS = "[^abc]";
-	private static final String LOWERCASE_ALPHABETS = "[a-z]";
-	private static final String UPPERCASE_ALPHABETS = "[A-Z]";
-	private static final String ALPHABETS = "[a-zA-Z]";
-	private static final String NUMBERS = "[0-9]";
-	private static final String ALPHA_NUMERIC = "[a-zA-Z0-9]";
-	private static final String SPECIAL_CHARACTERS = "[^a-zA-Z0-9]";
+	private static final String SPACE = "\\s";
+	private static final String EXCEPT_SPACE = "\\S";
+	private static final String DIGIT = "\\d";
+	private static final String EXCEPT_DIGIT = "\\D";
+	private static final String ALPHA_NUMERIC = "\\w";
+	private static final String EXCEPT_ALPHA_NUMERIC = "\\W";
+	private static final String ANY_CHARACTER = ".";
 
 	public static void main(String[] args) {
-		
-		printTestCase("Check for either a or b or c in given string " + TARGET_STRING);
-		checkPatternInTargetString(SPECIFIC_ALPHABETS, TARGET_STRING);
 
-		printTestCase("Check for characters other than a or b or c in given string " + TARGET_STRING);
-		checkPatternInTargetString(EXCEPT_SPECIFIC_ALPHABETS, TARGET_STRING);
+		printTestCase("Space in given string " + TARGET_STRING);
+		checkPatternInTargetString(SPACE, TARGET_STRING);
 
-		printTestCase("Check for lower case alphabets in given string " + TARGET_STRING);
-		checkPatternInTargetString(LOWERCASE_ALPHABETS, TARGET_STRING);
+		printTestCase("Characters other than space in given string " + TARGET_STRING);
+		checkPatternInTargetString(EXCEPT_SPACE, TARGET_STRING);
 
-		printTestCase("Check for upper case alphabets in given string " + TARGET_STRING);
-		checkPatternInTargetString(UPPERCASE_ALPHABETS, TARGET_STRING);
+		printTestCase("Digits in given string " + TARGET_STRING);
+		checkPatternInTargetString(DIGIT, TARGET_STRING);
 
-		printTestCase("Check for alphabets in given string " + TARGET_STRING);
-		checkPatternInTargetString(ALPHABETS, TARGET_STRING);
+		printTestCase("Characters other than digits in given string " + TARGET_STRING);
+		checkPatternInTargetString(EXCEPT_DIGIT, TARGET_STRING);
 
-		printTestCase("Check for numbers in given string " + TARGET_STRING);
-		checkPatternInTargetString(NUMBERS, TARGET_STRING);
-
-		printTestCase("Check for alpha numeric characters in given string " + TARGET_STRING);
+		printTestCase("Alpha numeric character in given string " + TARGET_STRING);
 		checkPatternInTargetString(ALPHA_NUMERIC, TARGET_STRING);
 
-		printTestCase("Check for special characters in given string " + TARGET_STRING);
-		checkPatternInTargetString(SPECIAL_CHARACTERS, TARGET_STRING);
+		printTestCase("Characters other than alpha numeric in given string " + TARGET_STRING);
+		checkPatternInTargetString(EXCEPT_ALPHA_NUMERIC, TARGET_STRING);
+
+		printTestCase("Any character given string " + TARGET_STRING);
+		checkPatternInTargetString(ANY_CHARACTER, TARGET_STRING);
 	}
 
 	private static void printTestCase(String message) {
